@@ -16,11 +16,12 @@ class DefaultController extends Controller
                 'title' => '',
                 'head'  => '',
                 'body'  => [
+                    'masthead' => $this->renderBlock('BlogBundle:Default:index.html.twig', 'masthead'),
                     'page-container' => $this->renderBlock('BlogBundle:Default:index.html.twig', 'page_container', [
                         'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
                     ]),
                 ],
-                'foot'  => ''
+                'foot'  => $this->renderBlock('BlogBundle:Default:index.html.twig', 'foot'),
             ];
 
             return new JsonResponse($data);
@@ -35,20 +36,21 @@ class DefaultController extends Controller
         $spf = $request->query->get('spf', '');
         if ($spf == 'navigate') {
             $data = [
-                'title' => '',
-                'head'  => '',
+                'title' =>  $this->renderBlock('BlogBundle:Default:test.html.twig', 'title'),
+                'head'  => $this->renderBlock('BlogBundle:Default:test.html.twig', 'head'),
                 'body'  => [
+                    'masthead' => $this->renderBlock('BlogBundle:Default:test.html.twig', 'masthead'),
                     'page-container' => $this->renderBlock('BlogBundle:Default:test.html.twig', 'page_container', [
                         'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
                     ]),
                 ],
-                'foot'  => ''
+                'foot'  => $this->renderBlock('BlogBundle:Default:test.html.twig', 'foot'),
             ];
 
             return new JsonResponse($data);
         }
         return $this->render('BlogBundle:Default:test.html.twig',[
-            'words' => 'leamsdfalaldfksadf',
+            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
         ]);
 
     }
@@ -60,18 +62,19 @@ class DefaultController extends Controller
                 'title' => '',
                 'head'  => '',
                 'body'  => [
+                    'masthead' => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'masthead'),
                     'page-container' => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'page_container', [
                         'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
                     ]),
                 ],
-                'foot'  => ''
+                'foot'  => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'foot'),
             ];
 
             sleep(2);
             return new JsonResponse($data);
         }
         return $this->render('BlogBundle:Default:test3.html.twig',[
-            'words' => 'leamsdfalaldfksadf',
+            'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
         ]);
 
     }
