@@ -1,0 +1,11 @@
+services:
+    bolg.asset_version_twig_extension:
+        class: BlogBundle\Twig\AssetVersionExtension
+        arguments: [ "%kernel.root_dir%" ]
+        tags:
+            - { name: twig.extension }
+
+    blog.comment_cascade_twig_extension:
+        class: BlogBundle\Twig\Extension\commentsCascade
+        tags:
+            - { name: twig.extension }

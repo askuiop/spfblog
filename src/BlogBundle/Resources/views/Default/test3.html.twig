@@ -1,0 +1,14 @@
+{% extends "@Blog/Default/layout.html.twig" %}
+
+
+{% block page_container %}
+    <h4>yaya !</h4>
+    <a href="{{ path('blog_homepage') }}" class="spf-link">第1页</a>
+    <br>
+    <a href="{{ path('blog_url2') }}" class="spf-link">第2页</a>
+    <br>
+
+        {% block container %}
+            {{ words | raw }}
+        {% endblock %}
+{% endblock %}

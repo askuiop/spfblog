@@ -1,0 +1,14 @@
+{% extends "@Blog/Default/layout.html.twig" %}
+
+
+{% block page_container %}
+    <h3>I am page two !</h3>
+    <a href="{{ path('blog_homepage') }}" class="spf-link">第1页</a>
+    <br>
+    <a href="{{ path('blog_url3') }}" class="spf-link">第3页-我会等2秒</a>
+    <br>
+    {% block container %}
+        {{ words | raw }}
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+blog_homepage:
+    path:     /
+    defaults: { _controller: BlogBundle:Default:index }
+
+
+blog_url2:
+    path:     /url2
+    defaults: { _controller: BlogBundle:Default:test }
+
+blog_url3:
+    path:     /url3
+    defaults: { _controller: BlogBundle:Default:test3 }
