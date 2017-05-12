@@ -8,6 +8,7 @@ var Q = require("q");
 
 var config = {
     modulesDir : "node_modules/",
+    vendorDir : "vendor/",
     assetsDir : "src/BlogBundle/Resources/assets/",
     sassPattern: "sass/**/*.scss",
     cssPattern: "css/**/*.css",
@@ -72,14 +73,16 @@ gulp.task('styles', function () {
     pipeline.add(
         [
             //config.bowerDir + 'bootstrap/dist/css/bootstrap.css',
-            config.assetsDir + config.cssPattern
+            //config.vendorDir + 'twbs/bootstrap/dist/css/bootstrap.min.css',
+            config.assetsDir + config.cssPattern,
+            config.modulesDir + 'nprogress/nprogress.css',
         ], 'main.css'
     )
 
     //pipeline.add(
     //    [
-    //        config.assetsDir + 'sass/home.scss',
-    //    ], 'home.css'
+    //        config.vendorDir + 'twbs/bootstrap/dist/css/bootstrap.min.css',
+    //    ], 'bs.css'
     //)
 //
     //pipeline.add(
@@ -96,7 +99,10 @@ gulp.task('scripts',function () {
     app.addScript([
         config.modulesDir + 'jquery/dist/jquery.js',
         config.modulesDir + 'spf/dist/spf.js',
-        config.assetsDir + config.jsPattern
+        config.modulesDir + 'vue/dist/vue.js',
+        config.modulesDir + 'nprogress/nprogress.js',
+        config.assetsDir + config.jsPattern,
+        //config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js'
     ], 'main.js')
 })
 

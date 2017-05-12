@@ -26,8 +26,6 @@ class DefaultController extends Controller
 
             return new JsonResponse($data);
         }
-
-
         return $this->render('BlogBundle:Default:index.html.twig');
     }
 
@@ -54,26 +52,26 @@ class DefaultController extends Controller
         ]);
 
     }
+
     public function test3Action(Request $request)
     {
         $spf = $request->query->get('spf', '');
         if ($spf == 'navigate') {
             $data = [
                 'title' => '',
-                'head'  => '',
+                'head'  => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'head'),
                 'body'  => [
-                    'masthead' => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'masthead'),
+                    'masthead'       => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'masthead'),
                     'page-container' => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'page_container', [
                         'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
                     ]),
                 ],
                 'foot'  => $this->renderBlock('BlogBundle:Default:test3.html.twig', 'foot'),
             ];
-
             sleep(2);
             return new JsonResponse($data);
         }
-        return $this->render('BlogBundle:Default:test3.html.twig',[
+        return $this->render('BlogBundle:Default:test3.html.twig', [
             'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
         ]);
 
