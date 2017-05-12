@@ -6,6 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}test{% endblock %}</title>
+    {% block meta %}
+
+    {% endblock %}
+
     {% block head %}
         <script name="www/main" src="{{ asset('/dist/js/main.js') | asset_version }}" ></script>
         <link name="www/main" rel="stylesheet" href="{{ asset('/dist/css/main.css') | asset_version }}">
@@ -40,16 +44,17 @@
         </div>
        
     {% endblock %}
-    
-    <div id="footer-container">
-        {% block footer_container %}
-            <hr>
-            <h5>I am layout footer</h5>
-        {% endblock %}
-
-    </div>
-    
 </div>
+
+
+<div id="footer-container">
+    {% block footer_container %}
+        <hr>
+        <h5>I am layout footer</h5>
+    {% endblock %}
+
+</div>
+
 
 {% block foot %}
 {% endblock %}
