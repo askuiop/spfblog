@@ -1,0 +1,235 @@
+@import 'basic';
+
+#masthead{
+    height: 56px;
+    line-height: 56px;
+    box-shadow: 0 1px 16px #dedede;
+    padding: 0 15px;
+    color: rgba(17, 17, 17, 0.4);
+
+    i{
+        cursor: pointer;
+    }
+    .mh-title{
+        font-size: 1.8rem;
+
+        h1{
+        color: #4d4d4d;
+            display: inline-block;
+            margin: 0;
+            padding-left: 30px;
+            font-size: 2.4rem;
+        }
+    }
+    .mh-search{
+        position: relative;
+        form {
+            width: 80%;
+            padding-top: 10px;
+            i {
+                padding: 0 12px;
+            }
+        }
+    }
+
+
+
+    .mh-min-search{
+        display: none;
+    }
+
+    .mh-icon{
+        font-size: 2rem;
+        div{
+            margin-right: 30px;
+        }
+        div:first-child{
+            margin-right: 0;  
+        }
+        
+        i.user-icon{
+            border: 1px solid rgba(204, 204, 204, 0.23);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            line-height: 38px;
+            text-indent: 8px;
+            background: #eee;
+        }
+    }
+    
+}
+
+// ##############
+
+#page-container::after{
+            display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;
+        }
+#page-container{
+    
+     width: 100%;
+     margin-top: 10px;
+    
+    .nav{
+         
+        font-size: 1.4rem;
+        li{
+            line-height: 20px; 
+        }
+        li:hover{
+            background: $color-shadow-dark; 
+        }
+    }
+    .nav-plus{
+        margin-top: 6px;
+        border-top: solid 1px $color-shadow-dark;
+        h2{
+            font-size: 1.4rem;
+            color: $text-shadow-color;
+            margin: 20px 0 10px 15px;
+        } 
+    }
+    .guide-right{
+        margin-top: 20px;
+        padding-left: 30px;
+        font-size: 1.2rem; 
+        color: $text-light-dark;
+        .web-info{
+             margin-bottom: 20px;
+            a{
+                padding-right: 10px;
+                color: $text-light-dark;
+                cursor: pointer;
+            }
+            
+           
+        }
+        .copyright{
+
+        }
+    }
+
+
+    #container{
+        ::after{
+            display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;
+        }
+        .post-block{
+            margin-top:30px;
+            h3{
+                margin-bottom:30px;
+                padding-left: 15px;
+                font-size: 1.6rem;
+                
+            }
+            small{
+                
+            }
+            h4{
+                font-size: 1.4rem;
+            }
+
+            .a-post{
+                padding-bottom: 15px;
+                padding-top: 15px;
+            }
+            
+            padding-bottom: 15px; 
+            border-bottom: solid 1px $color-shadow-dark;
+            img{
+                width: 100%;
+            }
+        }
+        .post-block:after{
+            display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+
+}
+@media screen and(min-width: 960px) and (max-width: 1199px) {
+    #masthead{
+        .mh-title{
+            h1{
+                font-size: 2rem;
+            }
+        }
+            
+
+    }
+}
+
+@media screen and(min-width: 768px) and (max-width: 959px) {
+    #masthead{
+         form {
+            width: 100%;
+        }
+        .mh-title{
+            h1{
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #masthead{
+        padding: 0;
+        height: 48px;
+        line-height: 48px;
+
+         .mh-search {
+            display: none;
+        }
+        .mh-title{
+            h1{
+                font-size: 2rem;
+                padding-left: 15px;
+            }
+        }
+        .mh-min-search{
+            display: inherit;
+        }
+        .mh-icon{
+            font-size: 2rem;
+            div{
+                margin-right: 15px;
+                
+            }
+            .fast-action-notice,.fast-action-post{
+                display: none;
+            }
+            div:first-child{
+                    display:inherit;
+                    margin-right: 0px;  
+            }
+        }
+    }
+}
+
+
+
+// @media screen and(min-width: 480px) and (max-width: 767px) {
+//      #masthead{
+//         form {
+//             display: none;
+//         }
+//     }
+// }
+// @media screen and (max-width: 479px) {
+
+// }

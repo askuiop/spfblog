@@ -1,0 +1,90 @@
+@import 'basic';
+.show{
+    display: inherit;
+}
+
+.pc-search-result{
+    position: absolute;
+    padding: 0 15px;
+    width: 100%;
+    z-index: 10;
+    margin-left: -15px;
+    display: none; 
+    
+    
+    margin-top: 0px;
+    ul{
+        background: #fff;
+        border: 1px #ccc solid;
+        border-top: none;
+        width: 80%;
+        box-shadow: 0 1px 5px #ccc;
+        line-height: 20px;
+        font-size: 1.4rem;
+        border-radius: 1px;
+    }
+    i{
+        padding: 0 15px;
+    }
+    a{
+        color: $text-shadow-color; 
+
+    }
+}
+
+
+.cpnt_search{
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 100%;
+
+    .cover{
+        width: 100%;
+        top: 0;
+        background: rgba(220, 220, 220, 0.8);
+        height: 100%;
+        z-index: 10;
+    }
+    
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        line-height: 48px;
+        background: #fff;
+        z-index: 11;
+        div{
+            text-align: center;
+        }
+        .header-input{
+            flex: 1;
+        }
+        i{
+            width: 48px;
+            font-size: 1.8rem;
+        }
+        input{
+                display: inline-block;
+        }
+
+    }
+
+    .body{
+        background: #fff;
+        max-height: 50%;
+        overflow-y: scroll;
+
+        i{
+            padding-right: 20px;
+        }
+        a{
+            color: $text-shadow-color;   
+            font-size: 1.4rem;
+        }
+    }
+
+
+    
+}

@@ -73,8 +73,9 @@ gulp.task('styles', function () {
     pipeline.add(
         [
             //config.bowerDir + 'bootstrap/dist/css/bootstrap.css',
-            //config.vendorDir + 'twbs/bootstrap/dist/css/bootstrap.min.css',
+            config.vendorDir + 'twbs/bootstrap/dist/css/bootstrap.min.css',
             config.assetsDir + config.cssPattern,
+            config.assetsDir + config.sassPattern,
             config.modulesDir + 'nprogress/nprogress.css',
         ], 'main.css'
     )
@@ -102,7 +103,7 @@ gulp.task('scripts',function () {
         config.modulesDir + 'vue/dist/vue.js',
         config.modulesDir + 'nprogress/nprogress.js',
         config.assetsDir + config.jsPattern,
-        //config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js'
+        config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js'
     ], 'main.js')
 })
 
@@ -114,7 +115,7 @@ gulp.task('clean', function () {
 gulp.task('fonts', function () {
     var pipeline = new Pipeline();
     pipeline.add(
-        [ config.bowerDir+'bootstrap/dist/fonts/*' ],
+        [ config.vendorDir + 'twbs/bootstrap/dist/fonts/*' ],
         'web/dist/fonts'
     )
     return pipeline.run(app.addCopy);
@@ -132,6 +133,8 @@ gulp.task('watch', function () {
     gulp.watch( config.assetsDir + config.jsPattern, ['scripts'])
 })
 
+
+gulp.task('blog', plugins.sequence('clean', ['styles', 'scripts', 'fonts']));//顺序执行：
 
 gulp.task('sequence', plugins.sequence('clean', ['styles', 'scripts', 'fonts'], 'watch'));//顺序执行：'clean', run 'styles', 'scripts','fonts' in parallel after 'clean';
 

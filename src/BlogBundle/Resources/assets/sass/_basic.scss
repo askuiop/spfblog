@@ -1,0 +1,13 @@
+$color-shadow-dark: rgb(238, 238, 238); 
+$text-color:  rgb(17, 17, 17);
+$text-shadow-color: rgba(17, 17, 17, 0.6);
+$text-light-dark: rgb(136, 136, 136);
+
+body{
+    font-size: 62.5%;
+    color: $text-color;
+}
+
+.row{
+    width:100%;
+}
