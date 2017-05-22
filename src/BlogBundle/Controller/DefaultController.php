@@ -19,7 +19,6 @@ class DefaultController extends SpfController
             'title' =>  'index',
             'head'  => '%head',
             'body'  => [
-                'masthead' =>  '%masthead',
                 'container' => '%container',
             ],
             'foot'  => '%foot',
