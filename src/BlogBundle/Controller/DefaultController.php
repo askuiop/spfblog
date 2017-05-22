@@ -17,12 +17,12 @@ class DefaultController extends SpfController
 
         $navigates = [
             'title' =>  'index',
-            'head'  => '_head',
+            'head'  => '%head',
             'body'  => [
-                'masthead' =>  '_masthead',
-                'container' => '_container',
+                'masthead' =>  '%masthead',
+                'container' => '%container',
             ],
-            'foot'  => '_foot',
+            'foot'  => '%foot',
         ];
 
         return $this->spfRender($template, $navigates, $params);
@@ -30,42 +30,60 @@ class DefaultController extends SpfController
 
     }
 
-    public function testAction(Request $request)
+    public function postAction(Request $request)
     {
-        $template = 'BlogBundle:Default:test.html.twig';
+        $template = 'BlogBundle:Default:post.html.twig';
         $params = [
             'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
         ];
 
         $navigates = [
-            'title' =>  '_title',
-            'head'  => '_head',
+            'title' =>  '%title',
+            'head'  => '%head',
             'body'  => [
-                'masthead' =>  '_masthead',
-                'page-container' => '_page_container',
+                'container' => '%container',
             ],
-            'foot'  => '_foot',
+            'foot'  => '%foot',
         ];
 
         return $this->spfRender($template, $navigates, $params);
 
     }
 
-    public function test3Action(Request $request)
+    public function contactAction(Request $request)
     {
-        $template = 'BlogBundle:Default:test3.html.twig';
+        $template = 'BlogBundle:Default:contact.html.twig';
         $params = [
-            'words' => '<p>此前</p>',
+            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
         ];
 
         $navigates = [
-            'title' =>  'index',
-            'head'  => '_head',
+            'title' =>  '%title',
+            'head'  => '%head',
             'body'  => [
-                'masthead' =>  '_masthead',
-                'page-container' => '_page_container',
+                'container' => '%container',
             ],
-            'foot'  => '_foot',
+            'foot'  => '%foot',
+        ];
+
+        return $this->spfRender($template, $navigates, $params);
+
+
+    }
+    public function otherAction(Request $request)
+    {
+        $template = 'BlogBundle:Default:other.html.twig';
+        $params = [
+            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
+        ];
+
+        $navigates = [
+            'title' =>  '%title',
+            'head'  => '%head',
+            'body'  => [
+                'container' => '%container',
+            ],
+            'foot'  => '%foot',
         ];
 
         return $this->spfRender($template, $navigates, $params);

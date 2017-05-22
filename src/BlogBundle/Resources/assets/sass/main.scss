@@ -172,14 +172,19 @@
                            padding-right: 30px;
                            color: $btn-not-active;
                        } 
-                       i:hover, i:active{
-                           color: $color-red;
-                       }
 
                     }
+                    a:focus{
+                        background: none;
+                    }
                 }
-                li:hover{
+                li:hover {
                     background: $color-shadow-dark; 
+                    i{
+                           color: $color-red;
+                       }
+                }
+                li.active{
                     i{
                            color: $color-red;
                        }

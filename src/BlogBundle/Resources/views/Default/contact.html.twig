@@ -1,0 +1,22 @@
+{% extends "@Blog/Default/layout.html.twig" %}
+
+{% block title %}
+    contact
+{% endblock %}
+
+{% block container %}
+    <div class="post-block">
+        <h3>contact ! <small> contact</small></h3>
+        <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495454108840&di=78695b512024203b0114f26675a0958b&imgtype=0&src=http%3A%2F%2Fwww.wowsai.com%2Fdata%2Ffiles%2Fstore_281750%2Fgoods_105%2F201503231115056293.jpg" alt=""></p>
+
+    </div>
+
+
+{% endblock %}
+
+{% block foot %}
+    {{ parent() }}
+    <script>
+        $($(".nav-body .nav li")[2]).addClass('active').siblings().removeClass("active");
+    </script>
+{% endblock %}

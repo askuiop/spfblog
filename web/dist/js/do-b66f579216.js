@@ -164,8 +164,10 @@ $(function () {
     spf.init();
     //NProgress.configure({ showSpinner: false });
 
-    $(document).on("spfclick", function() {
+    $(document).on("spfclick", function(event) {
       // Show progress bar
+      console.log(event);
+      console.log(event.currentTarget);
       NProgress.start();
     });
 
@@ -192,6 +194,7 @@ $(function () {
     });
 
     $(document).on('spfhistory', function (event) {
+        
 
         NProgress.set(0.7);
         NProgress.set(0.9);
@@ -204,4 +207,4 @@ $(function () {
     
 });
 
-//# sourceMappingURL=do-2ec94df352.js.map
+//# sourceMappingURL=do-b66f579216.js.map

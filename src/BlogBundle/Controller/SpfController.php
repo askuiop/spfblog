@@ -47,8 +47,8 @@ abstract class SpfController extends Controller
             return $data;
         }
 
-        if (strpos($def_nav, '_') === 0) {
-            $def_nav = ltrim($def_nav, '_');
+        if (strpos($def_nav, '%') === 0) {
+            $def_nav = ltrim($def_nav, '%');
 
             return !empty($def_nav) ?
                 $this->renderBlock($this->template, $def_nav, $this->params)

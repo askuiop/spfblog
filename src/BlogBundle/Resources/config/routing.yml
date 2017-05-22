@@ -3,13 +3,17 @@ blog_homepage:
     defaults: { _controller: BlogBundle:Default:index }
 
 
-blog_url2:
-    path:     /url2
-    defaults: { _controller: BlogBundle:Default:test }
+blog_post:
+    path:     /post
+    defaults: { _controller: BlogBundle:Default:post }
 
-blog_url3:
-    path:     /url3
-    defaults: { _controller: BlogBundle:Default:test3 }
+blog_contact:
+    path:     /contact
+    defaults: { _controller: BlogBundle:Default:contact }
+
+blog_other:
+    path:     /other
+    defaults: { _controller: BlogBundle:Default:other }
 
 
 

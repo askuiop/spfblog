@@ -113,10 +113,10 @@
 
                         <div class="nav-body scrollbar-macosx">
                             <ul class="nav">
-                                <li><a href="##"><i class="glyphicon glyphicon-home" aria-hidden="true"></i>home</a></li>
-                                <li><a href="##"><i class="glyphicon glyphicon-book" aria-hidden="true"></i>post</a></li>
-                                <li><a href="##"><i class="glyphicon  glyphicon-info-sign" aria-hidden="true"></i>contact</a></li>
-                                <li><a href="##"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>other</a></li>
+                                <li><a href="{{ path('blog_homepage') }}" class="spf-link"><i class="glyphicon glyphicon-home" aria-hidden="true"></i>home</a></li>
+                                <li><a href="{{ path('blog_post') }}" class="spf-link" ><i class="glyphicon glyphicon-book" aria-hidden="true"></i>post</a></li>
+                                <li><a href="{{ path('blog_contact') }}" class="spf-link"><i class="glyphicon  glyphicon-info-sign" aria-hidden="true"></i>contact</a></li>
+                                <li><a href="{{ path('blog_other') }}" class="spf-link"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>other</a></li>
                             </ul>
 
                             <div class="nav-plus">
@@ -214,7 +214,7 @@
         </div>
     </div>
 
-    <script name="www/main" src="{{ asset('/dist/js/do.js') | asset_version }}" ></script>
+    <script name="www/do" src="{{ asset('/dist/js/do.js') | asset_version }}" ></script>
 
 {% endblock %}
 

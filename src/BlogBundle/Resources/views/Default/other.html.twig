@@ -1,0 +1,23 @@
+{% extends "@Blog/Default/layout.html.twig" %}
+
+{% block title %}
+    other
+{% endblock %}
+
+{% block container %}
+    <div class="post-block">
+        <h3>other ! <small> other</small></h3>
+        <p  class="" style="width: 60%"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496048881&di=cbbbb079eb748a47f8d718f08a1dfa92&imgtype=jpg&er=1&src=http%3A%2F%2Fp3.v.17173cdn.com%2Fvw0tha%2FYWxqaGBf%2Fuploads%2Fimages%2Fvideo%2F20160222%2F32288750_0.jpg" alt=""></p>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block foot %}
+    {{ parent() }}
+    <script>
+        $($(".nav-body .nav li")[3]).addClass('active').siblings().removeClass("active");
+    </script>
+{% endblock %}

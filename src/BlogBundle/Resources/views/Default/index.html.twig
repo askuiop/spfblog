@@ -8,21 +8,21 @@
 
 {% block container %}
     <div class="post-block">
-        <h3>This is a demo! 你的DEMO<small> This is a demo中国sdf菜靠sfsdf外面呵芝加哥榀</small></h3>
+        <h3>This is index page ! 你的DEMO<small> This is a demo菜</small></h3>
             <div class="col-xs-12 col-sm-6 col-md-3 a-post">
-                <div><a href="##"><img src="http://placehold.it/246x138" alt=""></a></div>
+                <div><a href="##"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495453391695&di=21ab792307e7b891fa6d2adbd773b907&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F13%2F38%2F86%2F83e58PICqVx_1024.bmp" alt=""></a></div>
                 <h4>学生花千元带女网友过土豪生活 没钱回家报假警</h4>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 a-post">
-                <div><a href="##"><img src="http://placehold.it/246x138" alt=""></a></div>
+                <div><a href="##"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495453391695&di=21ab792307e7b891fa6d2adbd773b907&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F13%2F38%2F86%2F83e58PICqVx_1024.bmp" alt=""></a></div>
                 <h4>学生花千元带女网友过土豪生活 没钱回家报假警</h4>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 a-post">
-                <div><a href="##"><img src="http://placehold.it/246x138" alt=""></a></div>
+                <div><a href="##"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495453391695&di=21ab792307e7b891fa6d2adbd773b907&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F13%2F38%2F86%2F83e58PICqVx_1024.bmp" alt=""></a></div>
                 <h4>学生花千元带女网友过土豪生活 没钱回家报假警</h4>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 a-post">
-                <div><a href="##"><img src="http://placehold.it/246x138" alt=""></a></div>
+                <div><a href="##"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495453391695&di=21ab792307e7b891fa6d2adbd773b907&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F13%2F38%2F86%2F83e58PICqVx_1024.bmp" alt=""></a></div>
                 <h4>学生花千元带女网友过土豪生活 没钱回家报假警</h4>
             </div>
 
@@ -30,3 +30,11 @@
 
 
 {% endblock %}
+
+{% block foot %}
+    {{ parent() }}
+    <script>
+        $($(".nav-body .nav li")[0]).addClass('active').siblings().removeClass("active");
+    </script>
+{% endblock %}
+

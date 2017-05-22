@@ -76,7 +76,7 @@ gulp.task('styles', function () {
             config.vendorDir + 'twbs/bootstrap/dist/css/bootstrap.min.css',
             config.assetsDir + config.cssPattern,
             config.assetsDir + config.sassPattern,
-            config.modulesDir + 'nprogress/nprogress.css',
+            //config.modulesDir + 'nprogress/nprogress.css',
         ], 'main.css'
     )
 
