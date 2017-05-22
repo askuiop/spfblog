@@ -103,9 +103,11 @@ gulp.task('scripts',function () {
         config.modulesDir + 'nprogress/nprogress.js',
         config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js',
         config.modulesDir + 'vue/dist/vue.js',
-        config.modulesDir + 'axios/dist/axios.js',
-        config.assetsDir + config.jsPattern
+        config.modulesDir + 'axios/dist/axios.js'
     ], 'main.js')
+    app.addScript([
+        config.assetsDir + config.jsPattern
+    ], 'do.js')
 })
 
 gulp.task('clean', function () {

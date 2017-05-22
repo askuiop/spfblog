@@ -1,4 +1,26 @@
+var baseCover= {
+    el: $('.root-cover'),
+    show: function(cb){
+        this.el.show();
+        $('html').addClass('noscroll');
+        this.el.on('touchmove', function(event) {
+            event.preventDefault();
+        });
 
+        if (typeof cb != undefined) {
+            cb();
+        }
+
+    },
+    hide: function(cb){
+        $('.root-cover').hide();
+        $('html').removeClass('noscroll');
+        if (typeof cb != undefined) {
+            cb();
+        }
+
+    }
+}
 
 var cpnt = Vue.component('pc-search-result', {
     delimiters: ['${', '}'],
@@ -121,28 +143,3 @@ $(function () {
 
 
 })
-
-
-var baseCover= {
-    el: $('.root-cover'),
-    show: function(cb){
-        this.el.show();
-        $('html').addClass('noscroll');
-        this.el.on('touchmove', function(event) {
-            event.preventDefault();
-        });
-
-        if (typeof cb != undefined) {
-            cb();
-        }
-
-    },
-    hide: function(cb){
-        $('.root-cover').hide();
-        $('html').removeClass('noscroll');
-        if (typeof cb != undefined) {
-            cb();
-        }
-
-    }
-}
