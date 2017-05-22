@@ -17,7 +17,6 @@
 /node_modules/
 
 
-/bin/
 /composer.phar
 /tests/
 /.idea/
