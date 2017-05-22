@@ -100,10 +100,11 @@ gulp.task('scripts',function () {
     app.addScript([
         config.modulesDir + 'jquery/dist/jquery.js',
         config.modulesDir + 'spf/dist/spf.js',
-        config.modulesDir + 'vue/dist/vue.js',
         config.modulesDir + 'nprogress/nprogress.js',
-        config.assetsDir + config.jsPattern,
-        config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js'
+        config.vendorDir + 'twbs/bootstrap/dist/js/bootstrap.min.js',
+        config.modulesDir + 'vue/dist/vue.js',
+        config.modulesDir + 'axios/dist/axios.js',
+        config.assetsDir + config.jsPattern
     ], 'main.js')
 })
 

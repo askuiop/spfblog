@@ -73,6 +73,22 @@ class DefaultController extends SpfController
 
     }
 
+    public function testDataAction()
+    {
+        $data = [
+            0 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            1 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            2 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            3 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            4 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            5 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+            6 => ['title'=>'xxxx', 'link'=>'http://baidu.com'],
+
+        ];
+        $data = array_slice($data, 0, mt_rand(1, 5));
+        return new JsonResponse($data);
+    }
+
 
 
 

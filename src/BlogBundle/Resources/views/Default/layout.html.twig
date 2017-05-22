@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Jims{% endblock %}</title>
+    <title>{% block title %}JP Blog{% endblock %}</title>
     {% block meta %}
 
     {% endblock %}
@@ -17,52 +17,71 @@
     {% endblock %}
 
 
+    <script>
+        var app={
+            {% if app.environment=='prod'%}
+            baseUrl: '',
+            {% else %}
+            baseUrl: '/app_dev.php',
+            {% endif %}
+
+        }
+
+    </script>
+
+
 </head>
 <body>
 <div id="body-container" class="">
+    <script  type="text/x-template" id="tpl-pc-search-result">
+
+        <div class="pc-search-result show" id="pc-search-result" >
+            <ul  class="nav " v-if="listData.length">
+                <li  v-for="ld in listData" ><a :href="ld.link"><i class="glyphicon glyphicon-search" aria-hidden="true"></i>${ld.title}</a></li>
+            </ul>
+        </div>
+    </script>
     {% block body_container %}
 
         <div id="masthead"  >
             {% block masthead %}
                 <div class="">
                     <div class="col-xs-7 col-sm-4 col-md-3   mh-title">
-                        <i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i>
-                        <h1>Jims work</h1>
+                        <button><i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i></button>
+                        <h1>JP Blog</h1>
                     </div>
                     <div class="col-sm-4 col-md-6 mh-search" id="pc-seacher">
+
                         <form class="input-group">
-                            <input type="text"  class="form-control" placeholder="search..." aria-describedby="basic-addon2" @input="alt" >
+                            <input type="text"  class="form-control" placeholder="search..." aria-describedby="basic-addon2" @input="alt"  v-model="keywords" >
                             <span class="input-group-addon" ><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
 
                         </form>
 
-                        <pc-search-result :status="st"></pc-search-result>
-
-                        <script type="text/x-template" id="tpl-pc-search-result">
-
-                            <div :class="{ 'pc-search-result':1, 'show':status}" id="pc-search-result" >
-                                <p>${ status }</p>
-                                <ul class="nav ">
-                                    <li v-for=""><a href=""><i class="glyphicon glyphicon-search" aria-hidden="true"></i>akldsla</a></li>
-
-                                </ul>
-                            </div>
-                        </script>
-
-
+                        <pc-search-result  :list-data="listData" v-if="listData.length"></pc-search-result>
 
                     </div>
+
+
+
                     <div class="col-xs-5 col-sm-4 col-md-3  mh-icon ">
 
                         <div class="pull-right" title="user">
                             <i class="glyphicon glyphicon-user user-icon dropdown-toggle" aria-hidden="true" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
+                            <div class="dropdown-menu pop-out" aria-labelledby="dropdownMenu1">
+                                <div class="person-card">
+                                    <i class="glyphicon glyphicon-user user-icon dropdown-toggle" aria-hidden="true" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                                    <p>Jims xxx</p>
+                                </div>
+                                <ul class="nav nav-user">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+
                                 <li><a href="#">Separated link</a></li>
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                         <div class="pull-right fast-action-notice" data-toggle="tooltip" data-placement="bottom" title="xxxx"><i class="glyphicon glyphicon-bell" aria-hidden="true"></i></div>
                         <div class="pull-right fast-action-post"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></div>
@@ -84,42 +103,69 @@
         
         <div id="page-container" class="">
             {% block page_container %}
-                <div id="guide-container" class="hidden-xs col-sm-3 col-md-3">
+                <div id="guide-container" class="">
                     {% block guide_container %}
 
-                        <ul class="nav">
-                            <li><a href="##">home</a></li>
-                            <li><a href="##">post</a></li>
-                            <li><a href="##">contact</a></li>
-                            <li><a href="##">other</a></li>
-                        </ul>
-
-                        <div class="nav-plus">
-                            <h2 class="">Something else</h2>
-                            <ul class="nav">
-                                <li><a href="##">some</a></li>
-                                <li><a href="##">other</a></li>
-                                <li><a href="##">thinks</a></li>
-                            </ul>
+                        <div class="mh-title-plus">
+                            <button><i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i></button>
+                            <h1>JP Blog</h1>
                         </div>
 
-                        <div class="nav-plus">
-                            <div id="" class="guide-right">
-                                <div id="" class="web-info" >
-                                    <a href="//www.youtube.com/yt/about/zh-CN/">关于</a>
-                                    <a href="//www.youtube.com/yt/copyright/zh-CN/">版权</a>
-                                    <a href="//www.youtube.com/yt/creators/">创作者</a>
-                                    <a href="//www.youtube.com/yt/dev/zh-CN/">开发者</a>
-                                </div>
-                                <div id="copyright" class="copyright">
-                                    <div>© 2017 xxxx, LLC</div>
+                        <div class="nav-body scrollbar-macosx">
+                            <ul class="nav">
+                                <li><a href="##"><i class="glyphicon glyphicon-home" aria-hidden="true"></i>home</a></li>
+                                <li><a href="##"><i class="glyphicon glyphicon-book" aria-hidden="true"></i>post</a></li>
+                                <li><a href="##"><i class="glyphicon  glyphicon-info-sign" aria-hidden="true"></i>contact</a></li>
+                                <li><a href="##"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>other</a></li>
+                            </ul>
+
+                            <div class="nav-plus">
+                                <h2 class="">Something else</h2>
+                                <ul class="nav">
+                                    <li><a href="##">some</a></li>
+                                    <li><a href="##">other</a></li>
+                                    <li><a href="##">thinks</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-plus">
+                                <h2 class="">Something else</h2>
+                                <ul class="nav">
+                                    <li><a href="##">some</a></li>
+                                    <li><a href="##">other</a></li>
+                                    <li><a href="##">thinks</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-plus">
+                                <h2 class="">Something else</h2>
+                                <ul class="nav">
+                                    <li><a href="##">some</a></li>
+                                    <li><a href="##">other</a></li>
+                                    <li><a href="##">thinks</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="nav-plus">
+                                <div id="" class="guide-right">
+                                    <div id="" class="web-info" >
+                                        <a href="//www.youtube.com/yt/about/zh-CN/">关于</a>
+                                        <a href="//www.youtube.com/yt/copyright/zh-CN/">版权</a>
+                                        <a href="//www.youtube.com/yt/creators/">创作者</a>
+                                        <a href="//www.youtube.com/yt/dev/zh-CN/">开发者</a>
+                                    </div>
+                                    <div id="copyright" class="copyright">
+                                        <div>© 2017 xxxx, LLC</div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+
+
+
 
                     {% endblock %}
                 </div>
-                <div id="container" class="col-xs-12 col-sm-9 col-md-9">
+                <div id="container" class="">
                     {% block container %}
                         
                     {% endblock %}
@@ -140,6 +186,10 @@
 </div>
 
 {% block foot %}
+    <div class="root-cover" >
+    </div>
+
+
     <div class="cpnt_search">
         <div class="header">
             <div class="btn-close"><i class="glyphicon glyphicon-arrow-left" aria-hidden="true"></i></div>
@@ -161,61 +211,13 @@
             </ul>
         </div>
         <div class="cover">
-
         </div>
     </div>
-    <script>
-
-        Vue.component('pc-search-result', {
-            delimiters: ['${', '}'],
-            template: '#tpl-pc-search-result',
-            data: function () {
-                return {
-                    st: true
-                };
-            },
-            props: [ 'status' ],
-        });
-
-
-        var pcSearcher = new Vue({
-            delimiters: ['${', '}'],
-            el: "#pc-seacher" ,
-            methods: {
-                alt: function () {
-                    this.st = !this.st;
-                    console.log(this.st);
-
-                }
-            },
-            data: {
-                status:{},
-                st: false,
-
-            }
-        });
 
 
 
-
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-
-            $(".mh-min-search").click(function (event) {
-                $('.cpnt_search').show().find('input').focus();
-
-
-            });
-            $('.btn-close').click(function () {
-                $(this).parent().parent().hide();
-            });
-            $('.cover').click(function () {
-                $(this).parent().hide();
-            });
-
-
-        })
-    </script>
 {% endblock %}
+
 </body>
+
 </html>

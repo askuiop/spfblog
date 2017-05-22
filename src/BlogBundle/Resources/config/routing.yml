@@ -10,3 +10,9 @@ blog_url2:
 blog_url3:
     path:     /url3
     defaults: { _controller: BlogBundle:Default:test3 }
+
+
+
+search_data_test:
+    path:     /search
+    defaults: { _controller: BlogBundle:Default:testData }
