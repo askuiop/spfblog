@@ -1,5 +1,6 @@
 var baseCover= {
     el: $('.root-cover'),
+    st: false,
     show: function(cb){
         this.el.show();
         $('html').addClass('noscroll');
@@ -10,6 +11,7 @@ var baseCover= {
         if (typeof cb != undefined) {
             cb();
         }
+        this.st = true;
 
     },
     hide: function(cb){
@@ -18,6 +20,7 @@ var baseCover= {
         if (typeof cb != undefined) {
             cb();
         }
+        this.st = false;
 
     }
 }
@@ -166,9 +169,15 @@ $(function () {
 
     $(document).on("spfclick", function(event) {
       // Show progress bar
-      console.log(event);
-      console.log(event.currentTarget);
+      //console.log(event);
+      //console.log(event.currentTarget);
       NProgress.start();
+
+      if(baseCover.st){
+        $(".mh-title-plus i").trigger('click');
+      }
+
+
     });
 
     $(document).on('spfrequest', function (event) {
@@ -185,9 +194,13 @@ $(function () {
 
 
     $(document).on('spfdone', function (event) {
+        console.log(event);
+        console.log(event.currentTarget.activeElement);
+        
 
         NProgress.set(1.0);
         NProgress.done();
+
         // Finish request and remove progress bar
         //NProgress.remove();
 
@@ -207,4 +220,4 @@ $(function () {
     
 });
 
-//# sourceMappingURL=do-b66f579216.js.map
+//# sourceMappingURL=do-ce7612fe79.js.map

@@ -1,5 +1,6 @@
 var baseCover= {
     el: $('.root-cover'),
+    st: false,
     show: function(cb){
         this.el.show();
         $('html').addClass('noscroll');
@@ -10,6 +11,7 @@ var baseCover= {
         if (typeof cb != undefined) {
             cb();
         }
+        this.st = true;
 
     },
     hide: function(cb){
@@ -18,6 +20,7 @@ var baseCover= {
         if (typeof cb != undefined) {
             cb();
         }
+        this.st = false;
 
     }
 }

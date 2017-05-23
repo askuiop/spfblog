@@ -5513,6 +5513,26 @@ button.close {
   100% {
     transform: rotate(360deg); } }
 
+@media screen and (max-width: 767px) {
+  #nprogress .spinner {
+    top: 2px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(238, 238, 238, 0.6);
+    text-align: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */ }
+  #nprogress .spinner-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-top: -17px;
+    margin-left: -15px;
+    top: 50%;
+    left: 50%; } }
+
 body {
   font-size: 62.5%;
   color: #111111; }
@@ -6051,4 +6071,4 @@ body {
 .scrollbar-macosx > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size {
   top: -11px; }
 
-/*# sourceMappingURL=main-499fc06613.css.map */
+/*# sourceMappingURL=main-9064afa870.css.map */

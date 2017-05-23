@@ -8,25 +8,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends SpfController
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $template = 'BlogBundle:Default:index.html.twig';
         $params = [
-            'words' => '<p>此前鸟类之间的“社交互动”研究已经显示了一些有趣的见解</p>',
+            'words' => '<p>nothing</p>',
         ];
-
         $navigates = [
-            'title' =>  'index',
+            'title' =>  '%title',
             'head'  => '%head',
             'body'  => [
                 'container' => '%container',
             ],
             'foot'  => '%foot',
         ];
-
         return $this->spfRender($template, $navigates, $params);
-
-
     }
 
     public function postAction(Request $request)

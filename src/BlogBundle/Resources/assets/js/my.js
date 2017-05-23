@@ -4,9 +4,15 @@ $(function () {
 
     $(document).on("spfclick", function(event) {
       // Show progress bar
-      console.log(event);
-      console.log(event.currentTarget);
+      //console.log(event);
+      //console.log(event.currentTarget);
       NProgress.start();
+
+      if(baseCover.st){
+        $(".mh-title-plus i").trigger('click');
+      }
+
+
     });
 
     $(document).on('spfrequest', function (event) {
@@ -23,9 +29,13 @@ $(function () {
 
 
     $(document).on('spfdone', function (event) {
+        console.log(event);
+        console.log(event.currentTarget.activeElement);
+        
 
         NProgress.set(1.0);
         NProgress.done();
+
         // Finish request and remove progress bar
         //NProgress.remove();
 
