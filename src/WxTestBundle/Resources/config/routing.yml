@@ -1,0 +1,3 @@
+wx_test_homepage:
+    path:     /wx
+    defaults: { _controller: WxTestBundle:Default:index }

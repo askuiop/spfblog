@@ -15,52 +15,93 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class SpfController extends Controller
 {
-    private $template;
+    private $view;
     private $params;
 
-    protected function spfRender($template, $navigates, $params=[])
+    /** @var \Twig_Environment $twig */
+    private $twig;
+    /** @var \Twig_Template $template */
+    private $template;
+
+    protected $layoutView = null;
+
+    protected $spfFormat = [ // block name need same to navigate tag
+        'title',
+        'url',
+        'head',
+        'attr',
+        'foot',
+        // special care
+        'body', // block name in body need same to dom id
+    ];
+
+    protected function spfRender($view, $params = [])
     {
         $requestStack = $this->get('request_stack');
         $request = $requestStack->getCurrentRequest();
-        $this->template = $template?$template:null;
-        $this->params = $params?$params:[];
+        $this->view = $view ? $view : null;
+        $this->params = $params ? $params : [];
 
         $spf = $request->query->get('spf', '');
-        if ($spf == 'navigate' && $navigates) {
-            $data = $this->getNavigateData($navigates);
+        if ($spf == 'navigate') { // is xhr ?
+            $data = $this->getNavigateData();
             return new JsonResponse($data);
         }
-        return $this->render($template, $params);
+        return $this->render($view, $params);
     }
 
-    private function getNavigateData($def_nav)
+    private function getNavigateData()
     {
-        if (is_array($def_nav) && count($def_nav)) {
-            $data = [];
-            foreach ($def_nav as $id => $nav) {
-                $data[$id] = $this->getNavigateData( $nav);
+        $view = $this->view;
+
+        $this->twig = $twig = $this->get('twig');
+        $this->template = $twig->loadTemplate($view);
+
+        $blocks = $this->getRefinedBlocks($view);
+        $blocks = array_unique(array_keys($blocks));
+
+        $navigateData = [];
+        foreach ($blocks as $key => $block) {
+            if ($block == 'body') continue;
+            if (in_array($block, $this->spfFormat)) {
+                $navigateData[$block] = $this->renderBlock($block);
+
+            } else {
+                $navigateData['body'][$block] = $this->renderBlock($block);
             }
-            return $data;
         }
-        if (strpos($def_nav, '%') === 0) {
-            $def_nav = ltrim($def_nav, '%');
 
-            return !empty($def_nav) ?
-                $this->renderBlock($this->template, $def_nav, $this->params)
-                : null;
-        }
-        return !empty($def_nav)
-            ? $def_nav
-            : null;
+        #dump($navigateData);die();
+        return $navigateData;
+
     }
 
-    protected function renderBlock($template, $block, $params = array())
+    private function getRefinedBlocks($view)
     {
-        /** @var \Twig_Environment $twig */
-        $twig = $this->get('twig');
+        $twig = $this->twig;
         /** @var \Twig_Template $template */
-        $template = $twig->loadTemplate($template);
-        return $template->renderBlock($block, $twig->mergeGlobals($params));
+        $template = $twig->loadTemplate($view);
+
+        if ($template->getParent([])) {
+            #$blockNames = $template->getBlockNames([]);
+            $blockNames = $template->getBlocks([]);  //refined
+
+            $parentTemplateFile = $template->getParent([])->getTemplateName();
+            return array_merge($this->getRefinedBlocks($parentTemplateFile), $blockNames);
+        } else {
+            if ($this->layoutView && $this->layoutView == $view) {
+                return [];
+            }
+
+            $blockNames = $template->getBlocks([]);
+            return $blockNames;
+
+        }
+    }
+
+    protected function renderBlock($block)
+    {
+        return $this->template->renderBlock($block, $this->twig->mergeGlobals($this->params));
     }
 
 }

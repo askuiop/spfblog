@@ -8,22 +8,28 @@ use React\Socket\Server;
 use React\Http\Response;
 use React\Http\Request;
 //use Psr\Http\Message\ServerRequestInterface;
-//use Symfony\Component\Debug\Debug;
+use Symfony\Component\Debug\Debug;
 
 require __DIR__.'/../app/autoload.php';
 
-$kernel = new AppKernel('prod', false);
+$kernel = new AppKernel('prod', true);
+$kernel->loadClassCache();
+
+//ebug::enable();
+//kernel = new AppKernel('dev', true);
 
 
 $callback = function (React\Http\Request $request, React\Http\Response $response) use ($kernel) {
+
+    //$kernel = new AppKernel('dev', true);
+    //$kernel->loadClassCache();
 
     $method = $request->getMethod();
     $headers = $request->getHeaders();
     $query = $request->getQueryParams();
 
-    //Debug::enable();
-    //$kernel = new AppKernel('dev', true);
-    //$kernel->loadClassCache();
+    echo $request->getPath(). PHP_EOL;
+
 
     $sfRequest = new Symfony\Component\HttpFoundation\Request(
         $query
@@ -53,38 +59,3 @@ $http->on('request', $callback);
 echo 'Listening on http://' . $socket->getAddress() . PHP_EOL;
 $loop->run();
 
-
-
-//$loop = Factory::create();
-//$socket = new Server(isset($argv[1]) ? $argv[1] : '0.0.0.0:0', $loop);
-//$server = new \React\Http\Server($socket, function (ServerRequestInterface $request) {
-//    return new Response(
-//        200,
-//        array(
-//            'Content-Type' => 'text/plain'
-//        ),
-//        "Hello world\n"
-//    );
-//});
-//echo 'Listening on http://' . $socket->getAddress() . PHP_EOL;
-//$loop->run();
-
-
-$loop = React\EventLoop\Factory::create();
-$socket = new Server(isset($argv[1]) ? $argv[1] : '127.0.0.1:33000', $loop);
-$http = new React\Http\Server($socket);
-
-$callback = function ($request, $response) {
-    $statusCode = 200;
-    $headers = array(
-        'Content-Type: text/plain'
-    );
-    $content = 'Hello World!';
-
-    $response->writeHead($statusCode, $headers);
-    $response->end($content);
-};
-
-$http->on('request', $callback);
-echo 'Listening on http://' . $socket->getAddress() . PHP_EOL;
-$loop->run();

@@ -1,0 +1,4 @@
+services:
+#    wx_test.example:
+#        class: WxTestBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

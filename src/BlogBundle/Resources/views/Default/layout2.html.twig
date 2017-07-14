@@ -1,0 +1,19 @@
+{% extends "@Blog/Default/layout.html.twig" %}
+
+
+{% block title %}JP Blog layout2{% endblock %}
+
+    {% block meta %}
+    {% endblock %}
+
+    {% block head %}
+        <script name="www/main" src="{{ asset('/dist/js/main.js') | asset_version }}" ></script>
+        <link name="www/main" rel="stylesheet" href="{{ asset('/dist/css/main.css') | asset_version }}">
+    {% endblock %}
+
+
+
+{% block foot %}
+    {{ parent() }}
+{% endblock %}
+

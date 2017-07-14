@@ -8,60 +8,33 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends SpfController
 {
+    protected $layoutView = '@Blog/Default/layout.html.twig';
     public function indexAction()
     {
         $template = 'BlogBundle:Default:index.html.twig';
         $params = [
-            'words' => '<p>nothing</p>',
+            'words' => '<p>我是数据</p>',
         ];
-        $navigates = [
-            'title' =>  '%title',
-            'head'  => '%head',
-            'body'  => [
-                'container' => '%container',
-            ],
-            'foot'  => '%foot',
-        ];
-        return $this->spfRender($template, $navigates, $params);
+        return $this->spfRender($template, $params);
     }
 
     public function postAction(Request $request)
     {
         $template = 'BlogBundle:Default:post.html.twig';
         $params = [
-            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
+            'title' => $request->getClientIp(),
+            'words' => '<p>我是数据</p>',
         ];
-
-        $navigates = [
-            'title' =>  '%title',
-            'head'  => '%head',
-            'body'  => [
-                'container' => '%container',
-            ],
-            'foot'  => '%foot',
-        ];
-
-        return $this->spfRender($template, $navigates, $params);
-
+        return $this->spfRender($template, $params);
     }
 
     public function contactAction(Request $request)
     {
         $template = 'BlogBundle:Default:contact.html.twig';
         $params = [
-            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
+            'words' => '<p>我是数据</p>',
         ];
-
-        $navigates = [
-            'title' =>  '%title',
-            'head'  => '%head',
-            'body'  => [
-                'container' => '%container',
-            ],
-            'foot'  => '%foot',
-        ];
-
-        return $this->spfRender($template, $navigates, $params);
+        return $this->spfRender($template, $params);
 
 
     }
@@ -69,20 +42,10 @@ class DefaultController extends SpfController
     {
         $template = 'BlogBundle:Default:other.html.twig';
         $params = [
-            'words' => '<p>当西红柿成熟时，它们的颜色会从绿色逐渐转变成橙色、红色。评估西红柿何时成熟基本上是用肉眼完成的，会有些主观。</p>',
+            'words' => '<p>我是数据</p>',
         ];
 
-        $navigates = [
-            'title' =>  '%title',
-            'head'  => '%head',
-            'body'  => [
-                'container' => '%container',
-            ],
-            'foot'  => '%foot',
-        ];
-
-        return $this->spfRender($template, $navigates, $params);
-
+        return $this->spfRender($template, $params);
 
     }
 
