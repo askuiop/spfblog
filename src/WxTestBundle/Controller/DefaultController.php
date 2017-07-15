@@ -79,7 +79,7 @@ class DefaultController extends Controller
     {
         $app = $this->get('wx_app');
         $response = $app->oauth->scopes(['snsapi_userinfo'])
-            ->redirect('/wx/oauthcallback');
+            ->redirect('http://askuiop.com/wx/oauthcallback');
 
         return $response;
 
