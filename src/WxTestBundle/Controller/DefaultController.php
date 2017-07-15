@@ -11,6 +11,8 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        file_put_contents('/tmp/xxxxx.log',$request->getUri());
+
         $app = $this->get('wx_app');
 
         // 从项目实例中得到服务端应用实例。
