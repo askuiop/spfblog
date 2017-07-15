@@ -3,19 +3,20 @@
 namespace WxTestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $token = 'suoklya';
 
-        $signature = $_GET['signature'];
-        $timestamp = $_GET['timestamp'];
-        $nonce = $_GET['nonce'];
-        $echostr = $_GET['echostr'];
+        $signature = $request->query->get('signature');
+        $timestamp = $request->query->get('timestamp');
+        $nonce = $request->query->get('nonce');
+        $echostr = $request->query->get('echostr');
 
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
@@ -30,9 +31,5 @@ class DefaultController extends Controller
         }
 
         throw new NotFoundHttpException();
-
-
-
-        return $this->render('WxTestBundle:Default:index.html.twig');
     }
 }
