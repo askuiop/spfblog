@@ -87,10 +87,15 @@ class DefaultController extends Controller
 
     public function authCallBackAction()
     {
-        $app = $this->get('wx_app');
-        $user = $app->oauth->user();
+        $token = $this->get('security.token_storage')->getToken();
 
-        print_r($user->toArray());
+        print_r($token->getUsername());
+        print_r($token->getRoles());
+        print_r($token->getCredentials());
+
+        //$app = $this->get('wx_app');
+        //$user = $app->oauth->user();
+        //print_r($user->toArray());
         // $user 可以用的方法:
         // $user->getId();  // 对应微信的 OPENID
         // $user->getNickname(); // 对应微信的 nickname
