@@ -1,0 +1,3 @@
+jims_wx_homepage:
+    path:     /
+    defaults: { _controller: JimsWxBundle:Default:index }

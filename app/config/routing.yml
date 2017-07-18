@@ -1,3 +1,7 @@
+jims_wx:
+    resource: "@JimsWxBundle/Resources/config/routing.yml"
+    prefix:   /
+
 wx_test:
     resource: "@WxTestBundle/Resources/config/routing.yml"
     prefix:   /

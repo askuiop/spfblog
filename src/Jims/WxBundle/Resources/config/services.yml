@@ -1,0 +1,24 @@
+parameters:
+    userClass: WxUser
+
+services:
+    wx.user_provider:
+        class: Jims\WxBundle\Security\Provider\WxUserProvider
+        arguments: ['@doctrine.orm.entity_manager']
+
+    wx.token_authenticator:
+        class: Jims\WxBundle\Security\Authenticator\WxTokenAuthenticator
+        arguments: [ "@doctrine.orm.entity_manager", "@wx_app" ]
+
+    #wx.authentication.wechat_listener:
+    #    class: Jims\WxBundle\Security\WechatListener
+    #    arguments:
+    #        - "@security.token_storage"
+    #        - "@security.authentication.manager"
+    #        - "@security.http_utils"
+    #        - "@lilocon.wechat.sdk"
+    #        - "@event_dispatcher"
+    #        - "@collection"
+
+
+

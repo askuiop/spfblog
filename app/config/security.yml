@@ -6,12 +6,23 @@ security:
     providers:
         in_memory:
             memory: ~
+        wx_user:
+            id: wx.user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        wechat:
+            pattern: ^/wx/
+            guard:
+                authenticators:
+                    - wx.token_authenticator
+            provider: wx_user
+
+
 
         main:
             anonymous: ~
