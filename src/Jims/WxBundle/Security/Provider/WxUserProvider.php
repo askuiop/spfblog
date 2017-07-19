@@ -35,13 +35,11 @@ class WxUserProvider implements UserProviderInterface
             'openid' => $username
         ]);
 
-        if ($wxUser) {
-            return $wxUser;
-        }
+        return $wxUser;
 
-        throw new UsernameNotFoundException(
-            sprintf('Username "%s" does not exist.', $username)
-        );
+        //throw new UsernameNotFoundException(
+        //    sprintf('Username "%s" does not exist.', $username)
+        //);
 
     }
 

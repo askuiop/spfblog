@@ -11,6 +11,7 @@ namespace Jims\WxBundle\Security\Authenticator;
 
 use Doctrine\ORM\EntityManager;
 use EasyWeChat\Foundation\Application;
+use Jims\WxBundle\Entity\WxUser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -86,7 +87,17 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         // 如果是个User对象，checkCredentials()将被调用
 
         $username = $credentials['openid'];
-        return $userProvider->loadUserByUsername($username);
+
+        $wxDbUser = $userProvider->loadUserByUsername($username);
+        if (!$wxDbUser) {
+            $authUser = $this->sdk->oauth->user();
+            $wxUser = new WxUser();
+            $wxUser->load($authUser->toArray());
+            $wxUser->save();
+            $wxDbUser = $wxUser;
+        }
+
+        return $wxDbUser;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
