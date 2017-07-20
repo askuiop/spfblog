@@ -340,7 +340,7 @@ class WxUser implements UserInterface
 
     public function getUsername()
     {
-        return $this->nickname();
+        return $this->getNickname();
         // TODO: Implement getUsername() method.
     }
 
