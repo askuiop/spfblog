@@ -96,7 +96,9 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         if (!$wxDbUser) {
             $wxUser = new WxUser();
             $wxUser->load($credentials);
-            $this->em->flush($wxUser);
+
+            $this->em->persist($wxUser);
+            $this->em->flush();
 
             $wxDbUser = $wxUser;
         }
