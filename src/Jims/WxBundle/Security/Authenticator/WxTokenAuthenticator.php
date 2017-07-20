@@ -75,9 +75,9 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
             return null;
         }
 
-        $openid = $user->getId();
+        $credentials = $user->toArray();
 
-        return ['openid'=> $openid ];
+        return $credentials;
 
     }
 
@@ -93,9 +93,8 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
 
         $wxDbUser = $userProvider->loadUserByUsername($username);
         if (!$wxDbUser) {
-            $authUser = $this->sdk->oauth->user();
             $wxUser = new WxUser();
-            $wxUser->load($authUser->toArray());
+            $wxUser->load($credentials);
             $wxUser->save();
             $wxDbUser = $wxUser;
         }
