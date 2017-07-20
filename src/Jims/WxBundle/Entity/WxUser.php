@@ -317,11 +317,6 @@ class WxUser implements UserInterface
         $this->setAvatar($data['headimgurl']);
     }
 
-    public function __toString()
-    {
-        return $this->getNickname();
-    }
-
     public function getRoles()
     {
         return ["ROLE_USER", "ROLE_WX_USER"];
