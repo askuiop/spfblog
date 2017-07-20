@@ -324,7 +324,7 @@ class WxUser implements UserInterface
 
     public function getRoles()
     {
-        return ["role_user", "role_wx_user"];
+        return ["ROLE_USER", "ROLE_WX_USER"];
         // TODO: Implement getRoles() method.
     }
 
@@ -340,7 +340,7 @@ class WxUser implements UserInterface
 
     public function getUsername()
     {
-        return $this->getOpenid();
+        return $this->nickname();
         // TODO: Implement getUsername() method.
     }
 

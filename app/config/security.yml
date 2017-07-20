@@ -17,6 +17,7 @@ security:
 
         wechat:
             pattern: ^/wx/
+            anonymous: ~
             guard:
                 authenticators:
                     - wx.token_authenticator
@@ -33,3 +34,8 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
+
+
+    access_control:
+        - { path: ^/wx, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/wx/.+, role: ROLE_WX_USER }

@@ -89,9 +89,7 @@ class DefaultController extends Controller
     {
         $token = $this->get('security.token_storage')->getToken();
 
-        print_r($token->getUsername());
-        print_r($token->getRoles());
-        print_r($token->getCredentials());
+        dump($token);
 
         //$app = $this->get('wx_app');
         //$user = $app->oauth->user();
@@ -104,7 +102,7 @@ class DefaultController extends Controller
         // $user->getOriginal(); // 原始API返回的结果
         // $user->getToken(); // access_token， 比如用于地址共享时使用
 
-        return new Response('');
+        return $this->render(':default:index.html.twig');
 
     }
 
