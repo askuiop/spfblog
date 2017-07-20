@@ -66,6 +66,9 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         //    return ['code' => $request->query->get('code')];
         //}
         $code = $request->query->get('code', '');
+        if (!$code) {
+            return null;
+        }
 
         $user = $this->sdk->oauth->user();
         if (!$user) {

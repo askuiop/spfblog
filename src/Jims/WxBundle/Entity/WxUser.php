@@ -3,6 +3,7 @@
 namespace Jims\WxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Jims\WxBundle\Doctrine\CreateAndUpdateAction;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -11,9 +12,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="wx_user")
  * @ORM\Entity(repositoryClass="Jims\WxBundle\Repository\WxUserRepository")
  * @ORM\Table(options={"collate"="utf8mb4_unicode_ci", "charset"="utf8mb4"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class WxUser implements UserInterface
 {
+
+    use CreateAndUpdateAction;
 
     static $gender = array(
         0 => '未知',
@@ -28,56 +32,67 @@ class WxUser implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="openid", type="string", length=128, unique=true)
      */
-    private $openid;
+    protected $openid;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nickname", type="string", length=64)
      */
-    private $nickname;
+    protected $nickname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="sex", type="smallint")
      */
-    private $sex;
+    protected $sex;
 
     /**
      * @var string
      *
      * @ORM\Column(name="province", type="string", length=64)
      */
-    private $province;
+    protected $province;
 
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=64)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=64)
      */
-    private $country;
+    protected $country;
 
     /**
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255)
      */
-    private $avatar;
+    protected $avatar;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updatedAt;
 
 
     /**
@@ -257,6 +272,39 @@ class WxUser implements UserInterface
     {
         return $this->avatar;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
 
     public function load(array $data)
     {
