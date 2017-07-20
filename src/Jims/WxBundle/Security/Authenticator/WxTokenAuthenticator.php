@@ -89,7 +89,7 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         // if a User object, checkCredentials() is called
         // 如果是个User对象，checkCredentials()将被调用
 
-        $username = $credentials['openid'];
+        $username = $credentials['id'];
 
         $wxDbUser = $userProvider->loadUserByUsername($username);
         if (!$wxDbUser) {

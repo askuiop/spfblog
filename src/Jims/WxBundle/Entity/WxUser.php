@@ -44,6 +44,13 @@ class WxUser implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=64)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nickname", type="string", length=64)
      */
     protected $nickname;
@@ -305,10 +312,29 @@ class WxUser implements UserInterface
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+
+
 
     public function load(array $data)
     {
-        $this->setOpenid($data['openid']);
+        $this->setOpenid($data['id']);
+        $this->setName($data['name']);
         $this->setNickname($data['nickname']);
         $this->setSex($data['sex']);
         $this->setProvince($data['province']);
