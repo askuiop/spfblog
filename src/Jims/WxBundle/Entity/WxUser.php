@@ -333,10 +333,10 @@ class WxUser implements UserInterface
 
     public function load(array $data)
     {
-        $this->setOpenid($data['id']);
+        $this->setOpenid($data['openid']);
         $this->setName($data['name']);
         $this->setNickname($data['nickname']);
-        //$this->setSex($data['sex']);
+        $this->setSex($data['sex']);
         $this->setProvince($data['province']);
         $this->setCity($data['city']);
         $this->setCountry($data['country']);
