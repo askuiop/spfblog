@@ -14,7 +14,7 @@ class DefaultController extends Controller
         $server         = $this->get('wx_app')->server;
         $messageHandler = $this->get('wx.message.handler');
         $server->setMessageHandler(function($message) use ($messageHandler) {
-            $messageHandler->handle($message);
+            return $messageHandler->handle($message);
         });
         $response = $server->serve();
         return $response;

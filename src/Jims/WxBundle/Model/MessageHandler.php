@@ -35,7 +35,7 @@ class MessageHandler
         switch ($message->MsgType) {
             case 'text':
                 # 文字消息...
-                $this->eventDispatcher->dispatch(Events::MESSAGE_TEXT, $event);
+                return $this->eventDispatcher->dispatch(Events::MESSAGE_TEXT, $event);
                 break;
             case 'image':
                 # 图片消息...
