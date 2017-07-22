@@ -53,7 +53,6 @@ class WxUserProvider implements UserProviderInterface
         }
 
         dump($user);
-        die();
 
         return $this->loadUserByUsername($user->getUsername());
     }
