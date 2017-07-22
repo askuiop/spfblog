@@ -102,7 +102,7 @@ class DefaultController extends Controller
         // $user->getOriginal(); // 原始API返回的结果
         // $user->getToken(); // access_token， 比如用于地址共享时使用
 
-        return $this->render(':default:index.html.twig');
+        return $this->render('JimsWxBundle:Default:index.html.twig');
 
     }
 

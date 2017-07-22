@@ -12,6 +12,7 @@ namespace Jims\WxBundle\Security\Authenticator;
 use Doctrine\ORM\EntityManager;
 use EasyWeChat\Foundation\Application;
 use Jims\WxBundle\Entity\WxUser;
+use Overtrue\Socialite\AuthorizeFailedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,8 +70,12 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         if (!$code) {
             return null;
         }
+        try {
+            $user = $this->sdk->oauth->user();
+        } catch (AuthorizeFailedException $e) {
+            return null;
+        }
 
-        $user = $this->sdk->oauth->user();
         if (!$user) {
             return null;
         }
