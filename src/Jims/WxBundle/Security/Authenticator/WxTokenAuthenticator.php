@@ -68,18 +68,18 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         //}
         $code = $request->query->get('code', '');
         if (!$code) {
-            dump('no code');
+            //dump('no code');
             return null;
         }
         try {
             $user = $this->sdk->oauth->user();
         } catch (AuthorizeFailedException $e) {
-            dump('sdk can not get user');
+            //dump('sdk can not get user');
             return null;
         }
 
         if (!$user) {
-            dump('empty user');
+            //dump('empty user');
             return null;
         }
 
@@ -98,7 +98,7 @@ class WxTokenAuthenticator extends AbstractGuardAuthenticator
         // 如果是个User对象，checkCredentials()将被调用
 
         $username = $credentials['openid'];
-        dump($credentials);
+        //dump($credentials);
 
         $wxDbUser = $userProvider->loadUserByUsername($username);
         if (!$wxDbUser) {
