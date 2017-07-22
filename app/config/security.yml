@@ -16,7 +16,8 @@ security:
             security: false
 
         wechat:
-            pattern: ^/wx/
+            anonymous: ~
+            #pattern: ^/wx/
             anonymous: ~
             guard:
                 authenticators:

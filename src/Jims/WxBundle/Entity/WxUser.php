@@ -44,6 +44,13 @@ class WxUser implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="unionid", type="string", length=128, unique=true)
+     */
+    protected $unionid;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nickname", type="string", length=64)
      */
     protected $nickname;
@@ -274,6 +281,22 @@ class WxUser implements UserInterface
     }
 
     /**
+     * @return string
+     */
+    public function getUnionid()
+    {
+        return $this->unionid;
+    }
+
+    /**
+     * @param string $unionid
+     */
+    public function setUnionid($unionid)
+    {
+        $this->unionid = $unionid;
+    }
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -315,6 +338,11 @@ class WxUser implements UserInterface
         $this->setCity($data['city']);
         $this->setCountry($data['country']);
         $this->setAvatar($data['headimgurl']);
+
+        if (!empty($data['unionid'])) {
+            $this->setUnionid($data['unionid']);
+        }
+
     }
 
     public function getRoles()
