@@ -10,33 +10,60 @@ namespace Jims\WxBundle\Event;
 
 
 use Doctrine\ORM\EntityManager;
+use EasyWeChat\Message\News;
+use EasyWeChat\Message\Text;
 use Jims\WxBundle\Model\WechatUserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class WechatEventSubscriber implements EventSubscriberInterface
+class WxEventSubscriber implements EventSubscriberInterface
 {
     /**
      * @var EntityManager
      */
     private $em;
     /**
-     * @var string
-     */
-    private $userClass;
-    /**
      * @var \Doctrine\ORM\EntityRepository
      */
     private $repository;
     /**
-     * @param string $userClass
      * @param EntityManager $entityManager
      */
-    public function __construct($userClass, EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em         = $entityManager;
-        $this->repository = $entityManager->getRepository($userClass);
-        $this->userClass  = $userClass;
+        $this->repository = $entityManager->getRepository('JimsWxBundle:WxUser');
     }
+    public static function getSubscribedEvents()
+    {
+        return array(
+            Events::AUTHORIZE => 'onAuthorize',
+
+            Events::MESSAGE_TEXT => 'onText',
+        );
+    }
+
+    public function onText(WxMessageEvent $event)
+    {
+        $message =$event->getMessage();
+        if (is_numeric($message) && $message) {
+            $wxUser = $this->repository->findOneBy(['openid' => $message]);
+            if ($wxUser) {
+                return new News([
+                    'title'       => "用户",
+                    'description' => '用户description...',
+                    'url'         => '',
+                    'image'       => $wxUser->getAvatar(),
+                ]);
+            }
+        } else {
+           return new Text([
+               'content' => '您好！你输入的是字符串'
+           ]);
+        }
+    }
+
+
+
     public function onAuthorize(WechatAuthorizeEvent $event)
     {
         $wx_user = $event->getUser();
@@ -53,10 +80,5 @@ class WechatEventSubscriber implements EventSubscriberInterface
 
 
     }
-    public static function getSubscribedEvents()
-    {
-        return array(
-            Events::AUTHORIZE => 'onAuthorize',
-        );
-    }
+
 }

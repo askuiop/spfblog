@@ -1,6 +1,6 @@
-wx_test_homepage:
-    path:     /wx
-    defaults: { _controller: WxTestBundle:Default:index }
+#wx_test_homepage:
+#    path:     /wx
+#    defaults: { _controller: WxTestBundle:Default:index }
 
 
 wx_auth_callback:

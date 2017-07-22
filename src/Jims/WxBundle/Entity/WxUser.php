@@ -364,8 +364,7 @@ class WxUser implements UserInterface
     public function getUsername()
     {
         // TODO: Implement getUsername() method.
-
-        return $this->getOpenid();
+        return $this->getNickname();
     }
 
     public function eraseCredentials()

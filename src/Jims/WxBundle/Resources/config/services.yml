@@ -1,7 +1,20 @@
 parameters:
-    userClass: WxUser
+    wxUserClassName: WxUser
 
 services:
+    wx.message.handler:
+        class: Jims\WxBundle\Model\MessageHandler
+        arguments:
+            - "@event_dispatcher"
+
+
+    wx.event.subscriber:
+        class: Jims\WxBundle\Event\WxEventSubscriber
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_subscriber }
+
     wx.user_provider:
         class: Jims\WxBundle\Security\Provider\WxUserProvider
         arguments: ['@doctrine.orm.entity_manager']
