@@ -1,1 +1,4 @@
 
+wx_test_test:
+    path:     /wx/test
+    defaults: { _controller: JimsWxBundle:Default:test }
