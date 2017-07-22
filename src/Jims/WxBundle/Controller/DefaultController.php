@@ -11,17 +11,16 @@ class DefaultController extends Controller
     {
         file_put_contents('/tmp/xxxxx.log',$request->getUri());
 
-        //$server         = $this->get('wx_app')->server;
-        //$messageHandler = $this->get('wx.message.handler');
-        //$server->setMessageHandler(function($message) use ($messageHandler) {
-        //    $messageHandler->handle($message);
-        //});
-        //$response = $server->serve();
-        //return $response;
+        $server         = $this->get('wx_app')->server;
+        $messageHandler = $this->get('wx.message.handler');
+        $server->setMessageHandler(function($message) use ($messageHandler) {
+            $messageHandler->handle($message);
+        });
+        $response = $server->serve();
+        return $response;
 
 
-        $app = $this->get('wx_app');
-
+/*        $app = $this->get('wx_app');
         // 从项目实例中得到服务端应用实例。
         $server = $app->server;
         $server->setMessageHandler(function ($message) {
@@ -58,7 +57,7 @@ class DefaultController extends Controller
         });
         $response = $server->serve();
 
-        return $response;
+        return $response;*/
     }
 
     public function testAction()

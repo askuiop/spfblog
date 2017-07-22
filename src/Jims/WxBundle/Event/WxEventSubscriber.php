@@ -45,8 +45,9 @@ class WxEventSubscriber implements EventSubscriberInterface
     public function onText(WxMessageEvent $event)
     {
         $message =$event->getMessage();
-        if (is_numeric($message) && $message) {
-            $wxUser = $this->repository->findOneBy(['openid' => $message]);
+        $content = $message->Content;
+        if (is_numeric($content) && $content) {
+            $wxUser = $this->repository->findOneBy(['openid' => $content]);
             if ($wxUser) {
                 return new News([
                     'title'       => "用户",
