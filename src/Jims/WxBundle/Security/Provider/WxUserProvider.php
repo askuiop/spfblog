@@ -53,8 +53,11 @@ class WxUserProvider implements UserProviderInterface
         }
 
         dump($user);
+        $freshUser = $this->loadUserByUsername($user->getOpenid());
 
-        return $this->loadUserByUsername($user->getUsername());
+        dump($freshUser);
+
+        return $freshUser;
     }
 
     public function supportsClass($class)
