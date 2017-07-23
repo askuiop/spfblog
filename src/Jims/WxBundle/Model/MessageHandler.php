@@ -9,6 +9,9 @@
 namespace Jims\WxBundle\Model;
 
 
+use Doctrine\ORM\EntityManager;
+use EasyWeChat\Message\News;
+use EasyWeChat\Message\Text;
 use Jims\WxBundle\Event\Events;
 use Jims\WxBundle\Event\WxMessageEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -20,12 +23,28 @@ class MessageHandler
      */
     private $eventDispatcher;
     /**
+     * @var EntityManager
+     */
+    private $em;
+    /**
+     * @var \Doctrine\ORM\EntityRepository
+     */
+    private $repository;
+    /**
+     * @param EntityManager $entityManager
+     *
+     */
+
+
+    /**
      * MessageHandler constructor.
      * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher, EntityManager $entityManager)
     {
         $this->eventDispatcher = $eventDispatcher;
+        $this->em         = $entityManager;
+        $this->repository = $entityManager->getRepository('JimsWxBundle:WxUser');
     }
     public function handle($message)
     {
@@ -35,7 +54,8 @@ class MessageHandler
         switch ($message->MsgType) {
             case 'text':
                 # 文字消息...
-                return $this->eventDispatcher->dispatch(Events::MESSAGE_TEXT, $event);
+                $this->eventDispatcher->dispatch(Events::MESSAGE_TEXT, $event);
+                return $this->textHandler($message);
                 break;
             case 'image':
                 # 图片消息...
@@ -98,6 +118,27 @@ class MessageHandler
                 # 点击菜单跳转链接
                 $this->eventDispatcher->dispatch(Events::MESSAGE_EVENT_VIEW, $event);
                 break;
+        }
+    }
+
+
+    private function textHandler($message)
+    {
+        $content = $message->Content;
+        if (is_numeric($content) && $content) {
+            $wxUser = $this->repository->findOneBy(['openid' => $content]);
+            if ($wxUser) {
+                return new News([
+                    'title'       => "用户",
+                    'description' => '用户description...',
+                    'url'         => '',
+                    'image'       => $wxUser->getAvatar(),
+                ]);
+            }
+        } else {
+            return new Text([
+                'content' => '您好！你输入的是字符串'
+            ]);
         }
     }
 }

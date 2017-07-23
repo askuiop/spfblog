@@ -46,21 +46,7 @@ class WxEventSubscriber implements EventSubscriberInterface
     {
         $message =$event->getMessage();
         $content = $message->Content;
-        if (is_numeric($content) && $content) {
-            $wxUser = $this->repository->findOneBy(['openid' => $content]);
-            if ($wxUser) {
-                return new News([
-                    'title'       => "用户",
-                    'description' => '用户description...',
-                    'url'         => '',
-                    'image'       => $wxUser->getAvatar(),
-                ]);
-            }
-        } else {
-           return new Text([
-               'content' => '您好！你输入的是字符串'
-           ]);
-        }
+        ///....
     }
 
 
