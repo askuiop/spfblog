@@ -52,6 +52,7 @@ services:
         class: Jims\WxBundle\Model\MessageHandler
         arguments:
             - "@event_dispatcher"
+            - "@doctrine.orm.entity_manager"
 
 
     wx.event.subscriber:
