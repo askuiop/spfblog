@@ -126,13 +126,20 @@ class MessageHandler
     {
         $content = $message->Content;
         if (is_numeric($content) && $content) {
-            $wxUser = $this->repository->findOneBy(['openid' => $content]);
+            $wxUser = $this->repository->findOneBy(['id' => $content]);
             if ($wxUser) {
                 return new News([
                     'title'       => "用户",
                     'description' => '用户description...',
                     'url'         => '',
                     'image'       => $wxUser->getAvatar(),
+                ]);
+            } else {
+                return new News([
+                    'title'       => "没有该用户",
+                    'description' => 'description...',
+                    'url'         => '',
+                    'image'       => '',
                 ]);
             }
         } else {
