@@ -62,6 +62,16 @@ class DefaultController extends Controller
 
     public function testAction()
     {
-        return $this->render('JimsWxBundle:Default:index.html.twig');
+        $app = $this->get('wx_app');
+        $js = $app->js;
+
+        $wxJsConfig = $js->config(array('onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareAppMessage', 'onMenuShareTimeline'), true);
+
+        dump($wxJsConfig);
+
+
+        return $this->render('JimsWxBundle:Default:index.html.twig', [
+            'wxJsConfig' => $wxJsConfig
+        ]);
     }
 }
